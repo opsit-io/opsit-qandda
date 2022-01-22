@@ -2,6 +2,7 @@ package io.opsit.qandda.npm;
 
 import io.opsit.qandda.IAnalyzer;
 import io.opsit.qandda.Module;
+import io.opsit.qandda.AnalyzerException;
 import static io.opsit.qandda.TestUtils.*;
 
 import static org.junit.Assert.assertEquals;
@@ -19,8 +20,6 @@ public class NPMAnalyzerTest  {
     
     @Test
     public void TestRecognize() throws Exception {
-
-        
         String[] files =
             listFiles(TEST_DATA,
                       "npm/*/package.json");
@@ -38,8 +37,21 @@ public class NPMAnalyzerTest  {
     }
     
     @Test
-    public void TestAnalyze() {
-        
+    public void TestAnalyze() throws Exception {
+        String file = TEST_DATA + "/" + "npm/opsit/package.json";
+        String content = readFile(file);
+        assertNotNull(content.length());
+        assertTrue(content.length() > 0);
+        String fileName = getFileName(file);
+        Module m = this.analyzer.analyzeSpec(fileName, content);
+        assertNotNull(m);
+        assertEquals("opsit", m.getName());
+        assertEquals("1.21.0", m.getVersion());
+        assertEquals("npm", m.getPackager());
+        assertNotNull(m.getDependencies());
+        assertNotNull(m.getDependencies().size()>0);
+        // FIXME really test deps
+        System.out.println("Module: " + m);
     }
 }
 
