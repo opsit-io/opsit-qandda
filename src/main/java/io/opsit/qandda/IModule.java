@@ -12,6 +12,10 @@ public interface IModule {
     public String getName();
     public void setName(String name);
 
+    public String getDisplayName();
+    public void setDisplayName(String displayName);
+
+    
     public String getLicense();
     public void setLicense(String license);
     

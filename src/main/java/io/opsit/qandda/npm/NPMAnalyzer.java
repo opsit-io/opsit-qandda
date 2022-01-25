@@ -20,7 +20,9 @@ public class NPMAnalyzer implements  IAnalyzer  {
         throws AnalyzerException {
         Module result = mkModule();
         Map <String,Object>map = json2map(content);
-        result.setName(getString(map, "name"));
+        final String name = getString(map, "name");
+        result.setName(name);
+        result.setDisplayName(name);
         result.setVersion(getString(map, "version"));
         result.setDescription(getString(map, "description"));
         result.setLicense(getString(map, "license"));

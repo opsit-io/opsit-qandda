@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Module implements IModule {
     protected String name;
+    protected String displayName;
     protected String groupName;
     protected String version;
     protected String license;
@@ -57,6 +58,17 @@ public class Module implements IModule {
         this.name = name;
     }
 
+    @Override
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    @Override
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    
     @Override
     public String getDescription() {
         return description;
@@ -142,9 +154,11 @@ public class Module implements IModule {
         StringBuilder b = new StringBuilder();
         b.append("[");
         dumpField(b,"name", this.getName());
+        dumpField(b,"groupName", this.getGroupName());        
         dumpField(b,"version", this.getVersion());
+        dumpField(b,"displayName", this.getDisplayName());        
         dumpField(b,"description", this.getDescription());
-        dumpField(b,"groupName", this.getGroupName());
+        
         dumpField(b,"packager", this.getPackager());
         dumpField(b,"scope", this.getScope());
         dumpField(b,"author", this.getAuthor());
