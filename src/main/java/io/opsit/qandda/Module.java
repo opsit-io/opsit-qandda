@@ -158,7 +158,6 @@ public class Module implements IModule {
         dumpField(b,"version", this.getVersion());
         dumpField(b,"displayName", this.getDisplayName());        
         dumpField(b,"description", this.getDescription());
-        
         dumpField(b,"packager", this.getPackager());
         dumpField(b,"scope", this.getScope());
         dumpField(b,"author", this.getAuthor());
