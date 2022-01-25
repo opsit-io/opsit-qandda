@@ -28,72 +28,25 @@ import org.codehaus.plexus.interpolation.StringSearchInterpolator;
 import org.codehaus.plexus.interpolation.InterpolationException;
 import org.codehaus.plexus.interpolation.MapBasedValueSource;
 
-// https://stackoverflow.com/questions/11525318/how-do-i-obtain-a-fully-resolved-model-of-a-pom-file
-// https://stackoverflow.com/questions/11525318/how-do-i-obtain-a-fully-resolved-model-of-a-pom-file
 public class PomAnalyzer implements IAnalyzer {
     public Module analyzeSpec(String fileName, String content) throws AnalyzerException {
         Module result = mkModule();
         MavenXpp3Reader reader = new MavenXpp3Reader();
         InputStream is = new ByteArrayInputStream(content.getBytes());
         InputStreamReader r = new InputStreamReader(is);
-
-        /*ModelProblemCollector problems = new ModelProblemCollector() {
-            private List<ModelProblemCollectorRequest> requests =
-                    new ArrayList<ModelProblemCollectorRequest>();
-                public void add(ModelProblemCollectorRequest req) {
-                    requests.add(req);
-                }
-
-                public String toString() {
-                    return "ModelProblems("+requests.toString()+")";
-                }
-                };*/
-        
         try {
             Model model = reader.read(r);
-            System.out.println("\n\nREAD MODEL:\n"+model);
-
-            /*ModelInterpolator modelInterpolator = mkInterpolator();*/
             StringSearchInterpolator ssi = mkInterpolator(model);
-            
-            /*Model interpolatedModel =
-                modelInterpolator.interpolateModel( model,
-                                                    model.getProjectDirectory(),
-                                                    request,
-                                                    problems );*/
-        
             System.out.println(model);
-            //System.out.println("deps=" + model.getDependencies());
             result.setVersion(ssi.interpolate(model.getVersion()));
             result.setName(ssi.interpolate(model.getArtifactId()));
             result.setDisplayName(ssi.interpolate(model.getName()));
             result.setDescription(ssi.interpolate(model.getDescription()));
             result.setLicense(this.getLicense(ssi, model));
             result.setDependencies(getDependencies(ssi, model));
-            
-            
-            
-            //result.setLicense(ssi.interpolate());
-            
         } catch (Exception ex) {
             throw new AnalyzerException("Failed to parse pom", ex);
         }
-
-        /*
-        Map <String,Object>map = xml2map(content);
-        System.out.println(map);
-        result.setName(getString(map, "artifactId"));
-        result.setVersion(getString(map, "version"));
-        result.setDescription(getString(map, "description"));
-        result.setGroupName(getString(map, "groupId"));
-        result.setLicense(content);
-        */
-        //result.setLanguage(getString(map, "groupId"));
-        //reultt.setL
-        //result.setLicense(getString(map, "license"));
-        //result.setAuthor(getString(map, "author"));
-        //result.setDependencies(concat(convertDeps(map, "dependencies", null),
-        //                             convertDeps(map, "devDependencies", "dev")));
         return result;
 
     }
