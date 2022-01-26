@@ -32,7 +32,6 @@
 
     <!-- Dependency versions -->
     <!-- Plugin versions -->
-    <hibernate-validator-version>7.0.1.Final</hibernate-validator-version>
     <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
     <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -47,16 +46,12 @@
     <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     <checkstyle.version>9.0</checkstyle.version>
 
-    <problem-spring-web.version>0.27.0</problem-spring-web.version>
-    <jjwt.version>0.11.2</jjwt.version>
-    <nohttp-checkstyle.version>0.0.9</nohttp-checkstyle.version>
     <git-commit-id-plugin.version>5.0.0</git-commit-id-plugin.version>
     <modernizer-maven-plugin.version>2.3.0</modernizer-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
     <jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
     <jib-maven-plugin.image>eclipse-temurin:11-jre-focal</jib-maven-plugin.image>
     <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
-    <springfox.version>3.0.0</springfox.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
     <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
     <sonar-maven-plugin.version>3.9.0.2155</sonar-maven-plugin.version>
@@ -93,6 +88,7 @@
       <url>https://build.shibboleth.net/nexus/content/repositories/releases/</url>
     </repository>
   </repositories>
+  
   <dependencies>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
@@ -105,65 +101,10 @@
       <version>3.3.9</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-model-builder</artifactId>
-      <version>3.3.9</version>
-    </dependency>
-    <dependency>
-      <groupId>com.tersesystems.logback</groupId>
-      <artifactId>logback-structured-config</artifactId>
-      <version>1.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-yaml</artifactId>
-      <version>2.13.1</version>
-    </dependency>
-    <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
       <version>2.13.1</version>
     </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-hppc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-jsr310</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.10</version>
-    </dependency>
-    <!-- ch.qos.logback.contrib.jackson.JacksonJsonFormatter -->
-    <dependency>
-      <groupId>ch.qos.logback.contrib</groupId>
-      <artifactId>logback-jackson</artifactId>
-      <version>${logback.contrib.version}</version>
-    </dependency>
-
-    <!-- ch.qos.logback.contrib.json.classic.JsonLayout -->
-    <dependency>
-      <groupId>ch.qos.logback.contrib</groupId>
-      <artifactId>logback-json-classic</artifactId>
-      <version>${logback.contrib.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.yaml</groupId>
-      <artifactId>snakeyaml</artifactId>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-    <!-- https://mvnrepository.com/artifact/junit/junit -->
     <!-- test-time dependencies -->
     <dependency>
       <groupId>junit</groupId>
