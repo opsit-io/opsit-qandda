@@ -2,7 +2,7 @@ package io.opsit.qandda;
 
 import java.util.List;
 
-public interface IModule {
+public interface IComponent {
     public String getLang();
     public void setLang(String lang);
     
@@ -34,8 +34,8 @@ public interface IModule {
     public String getScope();
     public void setScope(String scope);
 
-    public List<Module> getDependencies();
-    public void setDependencies(List<Module> dependencies);
+    public List<Component> getDependencies();
+    public void setDependencies(List<Component> dependencies);
 
     public String getAuthor();
     public void setAuthor(String author);

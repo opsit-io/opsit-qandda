@@ -1,7 +1,7 @@
 package io.opsit.qandda.npm;
 
 import io.opsit.qandda.IAnalyzer;
-import io.opsit.qandda.Module;
+import io.opsit.qandda.Component;
 import static io.opsit.qandda.Utils.json2map;
 import static io.opsit.qandda.Utils.getString;
 import static io.opsit.qandda.Utils.getList;
@@ -16,9 +16,9 @@ import java.util.ArrayList;
 public class NPMAnalyzer implements  IAnalyzer  {
 
     
-    public Module analyzeSpec(String fileName, String content)
+    public Component analyzeSpec(String fileName, String content)
         throws AnalyzerException {
-        Module result = mkModule();
+        Component result = mkComponent();
         Map <String,Object>map = json2map(content);
         final String name = getString(map, "name");
         result.setName(name);
@@ -33,19 +33,19 @@ public class NPMAnalyzer implements  IAnalyzer  {
         
     }
 
-    protected Module mkModule() {
-        final Module m = new Module();
+    protected Component mkComponent() {
+        final Component m = new Component();
         m.setPackager("npm");
         return m;
     }
     
-    protected List<Module> convertDeps(Map map, String key, String scope) {
-        final List<Module> result = new ArrayList<Module>();
+    protected List<Component> convertDeps(Map map, String key, String scope) {
+        final List<Component> result = new ArrayList<Component>();
         final Map<String,Object> depsMap = getMap(map, key);
         if (null != depsMap) {
             for (Object obj : depsMap.keySet()) {
                 if (null != obj && (obj instanceof String)) {
-                    final Module dep = mkModule();
+                    final Component dep = mkComponent();
                     dep.setName((String)obj);
                     dep.setScope(scope);
                     result.add(dep);

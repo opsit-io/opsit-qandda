@@ -1,7 +1,7 @@
 package io.opsit.qandda;
 
 import io.opsit.qandda.IAnalyzer;
-import io.opsit.qandda.Module;
+import io.opsit.qandda.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonMappingException;

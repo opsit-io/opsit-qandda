@@ -1,11 +1,11 @@
 package io.opsit.qandda.gomod;
 
 import io.opsit.qandda.IAnalyzer;
-import io.opsit.qandda.Module;
+import io.opsit.qandda.Component;
 
 
 public class GoModAnalyzer implements  IAnalyzer  {
-    public Module analyzeSpec(String fileName, String content) {
+    public Component analyzeSpec(String fileName, String content) {
         return null;
     }
     

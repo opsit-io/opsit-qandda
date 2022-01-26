@@ -1,17 +1,14 @@
 package io.opsit.qandda.npm;
 
-import io.opsit.qandda.IAnalyzer;
-import io.opsit.qandda.Module;
-import io.opsit.qandda.AnalyzerException;
-import static io.opsit.qandda.TestUtils.*;
-
+import static io.opsit.qandda.TestUtils.TEST_DATA;
+import static io.opsit.qandda.TestUtils.getFileName;
+import static io.opsit.qandda.TestUtils.listFiles;
+import static io.opsit.qandda.TestUtils.readFile;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import io.opsit.qandda.Component;
 
 
 
@@ -43,7 +40,7 @@ public class NPMAnalyzerTest  {
         assertNotNull(content.length());
         assertTrue(content.length() > 0);
         String fileName = getFileName(file);
-        Module m = this.analyzer.analyzeSpec(fileName, content);
+        Component m = this.analyzer.analyzeSpec(fileName, content);
         assertNotNull(m);
         assertEquals("opsit", m.getName());
         assertEquals("1.21.0", m.getVersion());
@@ -51,7 +48,7 @@ public class NPMAnalyzerTest  {
         assertNotNull(m.getDependencies());
         assertNotNull(m.getDependencies().size()>0);
         // FIXME really test deps
-        System.out.println("Module: " + m);
+        //System.out.println("Component: " + m);
     }
 }
 

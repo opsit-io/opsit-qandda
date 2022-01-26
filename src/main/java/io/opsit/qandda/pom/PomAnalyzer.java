@@ -1,43 +1,30 @@
 package io.opsit.qandda.pom;
 
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-
-import io.opsit.qandda.IAnalyzer;
-import io.opsit.qandda.Module;
-import io.opsit.qandda.AnalyzerException;
-import static io.opsit.qandda.Utils.json2map;
-import static io.opsit.qandda.Utils.xml2map;
-import static io.opsit.qandda.Utils.getString;
-import static io.opsit.qandda.Utils.getList;
-import static io.opsit.qandda.Utils.getMap;
-import static io.opsit.qandda.Utils.concat;
-import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
-import org.apache.maven.model.Model;
-import org.apache.maven.model.License;
-import org.apache.maven.model.Dependency;
-//import org.apache.maven.model.building.ModelProblemCollector;
-//import org.apache.maven.model.building.ModelProblemCollectorRequest;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-///import org.apache.maven.model.interpolation.ModelInterpolator;
-// import org.apache.maven.model.interpolation.StringSearchModelInterpolator;
-import org.codehaus.plexus.interpolation.StringSearchInterpolator;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.maven.model.Dependency;
+import org.apache.maven.model.License;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.interpolation.InterpolationException;
 import org.codehaus.plexus.interpolation.MapBasedValueSource;
+import org.codehaus.plexus.interpolation.StringSearchInterpolator;
+import io.opsit.qandda.AnalyzerException;
+import io.opsit.qandda.Component;
+import io.opsit.qandda.IAnalyzer;
 
 public class PomAnalyzer implements IAnalyzer {
-    public Module analyzeSpec(String fileName, String content) throws AnalyzerException {
-        Module result = mkModule();
+    public Component analyzeSpec(String fileName, String content) throws AnalyzerException {
+        Component result = mkComponent();
         MavenXpp3Reader reader = new MavenXpp3Reader();
         InputStream is = new ByteArrayInputStream(content.getBytes());
         InputStreamReader r = new InputStreamReader(is);
         try {
             Model model = reader.read(r);
             StringSearchInterpolator ssi = mkInterpolator(model);
-            System.out.println(model);
             result.setVersion(ssi.interpolate(model.getVersion()));
             result.setName(ssi.interpolate(model.getArtifactId()));
             result.setDisplayName(ssi.interpolate(model.getName()));
@@ -52,10 +39,10 @@ public class PomAnalyzer implements IAnalyzer {
     }
 
 
-    protected List<Module> getDependencies( StringSearchInterpolator ssi, Model model) throws Exception {
-        List<Module> results = new ArrayList<Module>();
+    protected List<Component> getDependencies( StringSearchInterpolator ssi, Model model) throws Exception {
+        List<Component> results = new ArrayList<Component>();
         for (Dependency dep : model.getDependencies()) {
-            Module mod = new Module();
+            Component mod = new Component();
             mod.setGroupName(ssi.interpolate(dep.getGroupId()));
             mod.setVersion(ssi.interpolate(dep.getVersion()));
             mod.setName(ssi.interpolate(dep.getArtifactId()));
@@ -95,8 +82,8 @@ public class PomAnalyzer implements IAnalyzer {
         return ssi;
     }
     
-    protected Module mkModule() {
-        final Module m = new Module();
+    protected Component mkComponent() {
+        final Component m = new Component();
         m.setPackager("maven");
         return m;
     }

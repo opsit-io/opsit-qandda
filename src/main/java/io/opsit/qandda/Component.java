@@ -2,7 +2,7 @@ package io.opsit.qandda;
 
 import java.util.List;
 
-public class Module implements IModule {
+public class Component implements IComponent {
     protected String name;
     protected String displayName;
     protected String groupName;
@@ -14,7 +14,7 @@ public class Module implements IModule {
     protected String lang;
     protected String langVersion;
     protected String scope;;
-    protected List<Module> dependencies;
+    protected List<Component> dependencies;
 
     
     
@@ -120,12 +120,12 @@ public class Module implements IModule {
     }
 
     @Override
-    public List<Module> getDependencies() {
+    public List<Component> getDependencies() {
         return dependencies;
     }
 
     @Override
-    public void setDependencies(List<Module> dependencies) {
+    public void setDependencies(List<Component> dependencies) {
         this.dependencies = dependencies;
     }
 
