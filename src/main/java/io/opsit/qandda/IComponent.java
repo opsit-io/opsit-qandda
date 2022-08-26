@@ -1,42 +1,54 @@
 package io.opsit.qandda;
 
+import io.opsit.version.Version;
 import java.util.List;
 
 public interface IComponent {
-    public String getLang();
-    public void setLang(String lang);
-    
-    public String getLangVersion();
-    public void setLangVersion(String langVersion);
+  public String getLang();
 
-    public String getName();
-    public void setName(String name);
+  public void setLang(String lang);
 
-    public String getDisplayName();
-    public void setDisplayName(String displayName);
+  public String getLangVersion();
 
-    
-    public String getLicense();
-    public void setLicense(String license);
-    
-    public String getDescription();
-    public void setDescription(String description);
+  public void setLangVersion(String langVersion);
 
-    public String getGroupName();
-    public void setGroupName(String groupName);
+  public String getName();
 
-    public String getVersion();
-    public void setVersion(String version);
+  public void setName(String name);
 
-    public String getPackager();
-    public void setPackager(String packager);
+  public String getDisplayName();
 
-    public String getScope();
-    public void setScope(String scope);
+  public void setDisplayName(String displayName);
 
-    public List<Component> getDependencies();
-    public void setDependencies(List<Component> dependencies);
+  public String getLicense();
 
-    public String getAuthor();
-    public void setAuthor(String author);
+  public void setLicense(String license);
+
+  public String getDescription();
+
+  public void setDescription(String description);
+
+  public String getGroupName();
+
+  public void setGroupName(String groupName);
+
+  public Version getVersion();
+
+  public void setVersion(Version version);
+
+  public String getPackager();
+
+  public void setPackager(String packager);
+
+  public String getScope();
+
+  public void setScope(String scope);
+
+  public List<Component> getDependencies();
+
+  public void setDependencies(List<Component> dependencies);
+
+  public String getAuthor();
+
+  public void setAuthor(String author);
 }

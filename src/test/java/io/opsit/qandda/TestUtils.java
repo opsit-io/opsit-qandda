@@ -27,9 +27,20 @@ import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
+import java.io.File;
 
 public class TestUtils  {
-    public final static String TEST_DATA = "src/test/resources/";
+    public final static String getTestDataDir() {
+        final String resDir = "src/test/resources/";
+        File dir = new File(resDir);
+        String result; 
+        if (dir.isDirectory()) {
+            result = resDir;
+        } else {
+            result = "opsit-backend/" + resDir;
+        }
+        return result;
+    }
     
     public final static String readFile(String pathStr) throws IOException {
         final Path path = Path.of(pathStr);
