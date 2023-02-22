@@ -702,7 +702,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.4</version>
+            <version>1.5</version>
         </dependency>
         <!-- https://mvnre
         pository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
